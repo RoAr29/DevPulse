@@ -3,7 +3,7 @@ Skill-based teammate matcher for hackathons and college projects — recommends 
 
 ## Problem
 
-Most hackathon and project teams form through random group chats or whoever you already know. This leads to mismatched skill sets, uneven workloads, and teams that don't actually complement each other. TeamForge matches students based on skills, interests, and what they want to build.
+Most hackathon and project teams form through random group chats or whoever you already know. This leads to mismatched skill sets, uneven workloads, and teams that don't actually complement each other. The platform matches students based on skills, interests, and what they want to build.
 
 ## How it works
 
