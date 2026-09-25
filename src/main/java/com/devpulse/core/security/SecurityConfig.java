@@ -18,5 +18,6 @@ public class SecurityConfig {
             );
 
         return http.build();
+        return 0;
     }
 }
