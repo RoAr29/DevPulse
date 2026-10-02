@@ -25,4 +25,36 @@ public class Project {
 
     @ManyToOne
     private User user;
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGithubRepoUrl() {
+        return githubRepoUrl;
+    }
+
+    public void setGithubRepoUrl(String githubRepoUrl) {
+        this.githubRepoUrl = githubRepoUrl;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
