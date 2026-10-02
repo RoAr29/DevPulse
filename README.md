@@ -1,4 +1,4 @@
-# DevPulse 🚀
+# DevPulse 
 
 DevPulse is a project management and progress-tracking platform built for developers.
 
