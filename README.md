@@ -66,5 +66,5 @@ DevPulse is being built as a small microservices-based application:
 
 ```
 ## Authors
--Srushti Agrawal
+-Srushti Agrawal   
 -Venkatesh Paitwar
