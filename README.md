@@ -65,6 +65,6 @@ DevPulse is being built as a small microservices-based application:
              GitHub API        LLM API
 
 ```
-##Authors
+## Authors
 -Srushti Agrawal
 -Venkatesh Paitwar
