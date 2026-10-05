@@ -1,4 +1,4 @@
-package com.devpulse.githubsync.Controller;
+package com.devpulse.githubsync.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
