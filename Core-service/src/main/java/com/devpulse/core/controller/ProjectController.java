@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import com.devpulse.core.exception.ResourceNotFoundException;
+import jakarta.validation.Valid;
 
 import com.devpulse.core.model.Project;
 import com.devpulse.core.service.ProjectService;
@@ -30,20 +32,20 @@ public class ProjectController {
     }
 
     @PostMapping
-    public Project createProject(@RequestBody Project project) {
+    public Project createProject(@Valid @RequestBody Project project) { {
         return projectService.createProject(project);
+    }
     }
     
     @GetMapping("/{id}")
     public Project getProjectById(@PathVariable Long id) {
         return projectService.getProjectById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Project not found")
     }
     @PutMapping("/{id}")
     public Project updateProject(
             @PathVariable Long id,
-            @RequestBody Project project) {
-
+            @Valid @RequestBody Project project) {
         return projectService.updateProject(id, project);
     }
     

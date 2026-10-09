@@ -15,14 +15,15 @@ public class SecurityConfig {
 	        .formLogin(form -> form.disable())
 	        .httpBasic(basic -> basic.disable())
 	        .authorizeHttpRequests(auth -> auth
-	        		.requestMatchers(
-	        			    "/health",
-	        			    "/api/projects/**",
-	        			    "/api/phases/**",
-	        			    "/api/tasks/**"
-	        			).permitAll()
-	            .anyRequest().authenticated()
-	        );
+	        	    .requestMatchers(
+	        	        "/health",
+	        	        "/error",
+	        	        "/api/projects/**",
+	        	        "/api/phases/**",
+	        	        "/api/tasks/**"
+	        	    ).permitAll()
+	        	    .anyRequest().authenticated()
+	        	);
 
 	    return http.build();
 	}

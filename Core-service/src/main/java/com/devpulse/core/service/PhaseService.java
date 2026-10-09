@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.devpulse.core.model.Phase;
 import com.devpulse.core.repository.PhaseRepository;
+import com.devpulse.core.exception.ResourceNotFoundException;
 
 @Service
 public class PhaseService {
@@ -32,7 +33,7 @@ public class PhaseService {
     public Phase updatePhase(Long id, Phase updatedPhase) {
 
         Phase existingPhase = phaseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Phase not found"));
+        		.orElseThrow(() -> new ResourceNotFoundException("Phase not found"));
 
         existingPhase.setName(updatedPhase.getName());
         existingPhase.setDescription(updatedPhase.getDescription());
@@ -43,9 +44,9 @@ public class PhaseService {
 
     public void deletePhase(Long id) {
 
-        if (!phaseRepository.existsById(id)) {
-            throw new RuntimeException("Phase not found");
-        }
+    	if (!phaseRepository.existsById(id)) {
+    	    throw new ResourceNotFoundException("Phase not found");
+    	}
 
         phaseRepository.deleteById(id);
     }

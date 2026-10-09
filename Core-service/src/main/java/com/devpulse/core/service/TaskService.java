@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.devpulse.core.model.Task;
 import com.devpulse.core.repository.TaskRepository;
+import com.devpulse.core.exception.ResourceNotFoundException;
 
 @Service
 public class TaskService {
@@ -32,7 +33,7 @@ public class TaskService {
     public Task updateTask(Long id, Task updatedTask) {
 
         Task existingTask = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found"));
+        		.orElseThrow(() -> new ResourceNotFoundException("Task not found"));
 
         existingTask.setTitle(updatedTask.getTitle());
         existingTask.setDescription(updatedTask.getDescription());
@@ -44,9 +45,9 @@ public class TaskService {
 
     public void deleteTask(Long id) {
 
-        if (!taskRepository.existsById(id)) {
-            throw new RuntimeException("Task not found");
-        }
+    	if (!taskRepository.existsById(id)) {
+    	    throw new ResourceNotFoundException("Task not found");
+    	}
 
         taskRepository.deleteById(id);
     }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.devpulse.core.exception.ResourceNotFoundException;
+import jakarta.validation.Valid;
 
 import com.devpulse.core.model.Phase;
 import com.devpulse.core.service.PhaseService;
@@ -32,19 +34,18 @@ public class PhaseController {
     @GetMapping("/{id}")
     public Phase getPhaseById(@PathVariable Long id) {
         return phaseService.getPhaseById(id)
-                .orElseThrow(() -> new RuntimeException("Phase not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Phase not found")
     }
 
     @PostMapping
-    public Phase createPhase(@RequestBody Phase phase) {
+    public Phase createPhase(@Valid @RequestBody Phase phase) {
         return phaseService.createPhase(phase);
     }
 
     @PutMapping("/{id}")
     public Phase updatePhase(
             @PathVariable Long id,
-            @RequestBody Phase phase) {
-
+            @Valid @RequestBody Phase phase) {
         return phaseService.updatePhase(id, phase);
     }
 
