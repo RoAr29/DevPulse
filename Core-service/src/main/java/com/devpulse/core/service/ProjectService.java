@@ -6,6 +6,7 @@ import com.devpulse.core.model.Project;
 import com.devpulse.core.repository.ProjectRepository;
 import java.util.List;
 import java.util.Optional;
+import com.devpulse.core.exception.ResourceNotFoundException;
 
 @Service
 public class ProjectService {
@@ -30,7 +31,7 @@ public class ProjectService {
     
     public Project updateProject(Long id, Project updatedProject) {
         Project existingProject = projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Project not found"));
 
         existingProject.setName(updatedProject.getName());
         existingProject.setDescription(updatedProject.getDescription());
@@ -41,9 +42,9 @@ public class ProjectService {
     }
     
     public void deleteProject(Long id) {
-        if (!projectRepository.existsById(id)) {
-            throw new RuntimeException("Project not found");
-        }
+    	if (!projectRepository.existsById(id)) {
+    	    throw new ResourceNotFoundException("Project not found");
+    	}
 
         projectRepository.deleteById(id);
     }
