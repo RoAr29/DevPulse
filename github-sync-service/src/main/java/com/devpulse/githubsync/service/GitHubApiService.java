@@ -3,6 +3,7 @@ package com.devpulse.githubsync.service;
 import com.devpulse.githubsync.dto.GitHubRepositoryResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import com.devpulse.githubsync.dto.GitHubCommitResponse;
 
 @Service
 public class GitHubApiService {
@@ -18,5 +19,12 @@ public class GitHubApiService {
                 .uri("/user/repos")
                 .retrieve()
                 .body(GitHubRepositoryResponse[].class);
+    }
+
+    public GitHubCommitResponse[] getCommits(String owner, String repo) {
+        return githubRestClient.get()
+                .uri("/repos/{owner}/{repo}/commits", owner, repo)
+                .retrieve()
+                .body(GitHubCommitResponse[].class);
     }
 }

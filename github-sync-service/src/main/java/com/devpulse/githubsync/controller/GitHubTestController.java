@@ -1,5 +1,6 @@
 package com.devpulse.githubsync.controller;
 
+import com.devpulse.githubsync.dto.GitHubCommitResponse;
 import com.devpulse.githubsync.dto.GitHubRepositoryResponse;
 import com.devpulse.githubsync.service.GitHubApiService;
 import org.springframework.web.bind.annotation.GetMapping;
