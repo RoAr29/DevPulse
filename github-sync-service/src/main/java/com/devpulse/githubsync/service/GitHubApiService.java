@@ -2,9 +2,12 @@ package com.devpulse.githubsync.service;
 
 import com.devpulse.githubsync.dto.GitHubPullRequestResponse;
 import com.devpulse.githubsync.dto.GitHubRepositoryResponse;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import com.devpulse.githubsync.dto.GitHubCommitResponse;
+
+import java.util.Map;
 
 @Service
 public class GitHubApiService {
@@ -34,5 +37,12 @@ public class GitHubApiService {
                 .uri("/repos/{owner}/{repo}/pulls?state=all", owner, repo)
                 .retrieve()
                 .body(GitHubPullRequestResponse[].class);
+    }
+
+    public Map<String, Long> getLanguages(String owner, String repo) {
+        return githubRestClient.get()
+                .uri("/repos/{owner}/{repo}/languages", owner, repo)
+                .retrieve()
+                .body(new ParameterizedTypeReference<Map<String, Long>>() {});
     }
 }
