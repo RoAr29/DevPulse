@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.devpulse.core.exception.ResourceNotFoundException;
 import jakarta.validation.Valid;
+import com.devpulse.core.dto.TaskResponse;
 
 import com.devpulse.core.model.Task;
 import com.devpulse.core.service.TaskService;
@@ -27,15 +28,13 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    public List<TaskResponse> getAllTasks() {
+        return taskService.getAllTaskResponses();
     }
 
     @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable Long id) {
-        return taskService.getTaskById(id)
-                .orElseThrow(() ->
-                    new ResourceNotFoundException("Task not found"));
+    public TaskResponse getTaskById(@PathVariable Long id) {
+        return taskService.getTaskResponseById(id);
     }
 
     @PostMapping

@@ -7,6 +7,7 @@ import com.devpulse.core.repository.ProjectRepository;
 import java.util.List;
 import java.util.Optional;
 import com.devpulse.core.exception.ResourceNotFoundException;
+import com.devpulse.core.dto.ProjectResponse;
 
 @Service
 public class ProjectService {
@@ -48,4 +49,35 @@ public class ProjectService {
 
         projectRepository.deleteById(id);
     }
+    
+
+private ProjectResponse toProjectResponse(Project project) {
+    return new ProjectResponse(
+        project.getId(),
+        project.getName(),
+        project.getDescription(),
+        project.getGithubRepoUrl(),
+        project.getStatus() == null
+            ? null
+            : project.getStatus().toString()
+    );
+}
+
+
+public List<ProjectResponse> getAllProjectResponses() {
+    return projectRepository.findAll()
+            .stream()
+            .map(this::toProjectResponse)
+            .toList();
+}
+
+public ProjectResponse getProjectResponseById(Long id) {
+    Project project = projectRepository.findById(id)
+            .orElseThrow(() ->
+                    new ResourceNotFoundException("Project not found"));
+
+    return toProjectResponse(project);
+}
+
+
 }

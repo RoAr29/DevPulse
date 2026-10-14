@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.devpulse.core.exception.ResourceNotFoundException;
 import jakarta.validation.Valid;
+import com.devpulse.core.dto.PhaseResponse;
 
 import com.devpulse.core.model.Phase;
 import com.devpulse.core.service.PhaseService;
@@ -27,14 +27,13 @@ public class PhaseController {
     }
 
     @GetMapping
-    public List<Phase> getAllPhases() {
-        return phaseService.getAllPhases();
+    public List<PhaseResponse> getAllPhases() {
+        return phaseService.getAllPhaseResponses();
     }
 
     @GetMapping("/{id}")
-    public Phase getPhaseById(@PathVariable Long id) {
-        return phaseService.getPhaseById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Phase not found")
+    public PhaseResponse getPhaseById(@PathVariable Long id) {
+        return phaseService.getPhaseResponseById(id);
     }
 
     @PostMapping
